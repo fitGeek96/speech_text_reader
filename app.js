@@ -59,3 +59,19 @@ function createBox(item) {
     `;
     mainEl.appendChild(box);
 }
+
+let voices = [];
+
+function getVoices() {
+    voices = speechSynthesis.getVoices();
+    voices.forEach(voice => {
+        const option = document.createElement('option');
+        option.value = voice.name;
+        option.innerText = `${voice.name} ${voice.lang}`;
+        voicesSelectEl.appendChild(option);
+    });
+}
+
+speechSynthesis.addEventListener('voiceschanged', getVoices);
+toggleBtnEl.addEventListener('click', () => document.getElementById('text__box').classList.toggle('show'));
+closeBtnEl.addEventListener('click', () => document.getElementById('text__box').classList.remove('show'));
