@@ -45,10 +45,13 @@ const data = [{
 
 data.forEach(createBox);
 
-function createBox(item){
+function createBox(item) {
     const box = document.createElement('div');
-    const {image, text } = item;
-    
+    const {
+        image,
+        text
+    } = item;
+
     box.classList.add('box');
     box.innerHTML = `
         <img src="${image}" alt="${text}" />
@@ -56,91 +59,3 @@ function createBox(item){
     `;
     mainEl.appendChild(box);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
