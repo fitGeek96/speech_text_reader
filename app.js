@@ -83,14 +83,24 @@ function getVoices() {
     });
 }
 
-function setTextMessage(text){
+function setTextMessage(text) {
     message.text = text;
 }
 
-function speakText(){
+function speakText() {
     speechSynthesis.speak(message);
 }
 
+function setVoice(e) {
+    message.voice = voices.find(voice => voice.name === e.target.value);
+}
+
+
+readBtnEl.addEventListener('click', () => {
+    setTextMessage(textAreaEl.value);
+    speakText();
+});
+voicesSelectEl.addEventListener('change', setVoice)
 speechSynthesis.addEventListener('voiceschanged', getVoices);
 toggleBtnEl.addEventListener('click', () => document.getElementById('text__box').classList.toggle('show'));
 closeBtnEl.addEventListener('click', () => document.getElementById('text__box').classList.remove('show'));
