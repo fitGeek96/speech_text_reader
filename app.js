@@ -58,7 +58,18 @@ function createBox(item) {
         <p class="info">${text}</p>
     `;
     mainEl.appendChild(box);
+
+    box.addEventListener('click', () => {
+        setTextMessage(text);
+        speakText();
+        box.classList.add('active');
+        setTimeout(() => {
+            box.classList.remove('active');
+        }, 800);
+    });
 }
+
+const message = new SpeechSynthesisUtterance();
 
 let voices = [];
 
@@ -70,6 +81,14 @@ function getVoices() {
         option.innerText = `${voice.name} ${voice.lang}`;
         voicesSelectEl.appendChild(option);
     });
+}
+
+function setTextMessage(text){
+    message.text = text;
+}
+
+function speakText(){
+    speechSynthesis.speak(message);
 }
 
 speechSynthesis.addEventListener('voiceschanged', getVoices);
